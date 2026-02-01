@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine Buddy 💘</title>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        font-family: 'Segoe UI', sans-serif;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container {
+        text-align: center;
+        color: white;
+        z-index: 10;
+    }
+
+    h1 {
+        font-size: 42px;
+        margin-bottom: 40px;
+    }
+
+    button {
+        padding: 16px 36px;
+        font-size: 20px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    #yesBtn {
+        background: #2ecc71;
+        color: white;
+        margin-right: 20px;
+    }
+
+    #yesBtn:hover {
+        transform: scale(1.1);
+    }
+
+    #noBtn {
+        background: #e74c3c;
+        color: white;
+        position: absolute;
+    }
+
+    #success {
+        margin-top: 30px;
+        font-size: 26px;
+        display: none;
+    }
+
+    .heart {
+        position: absolute;
+        color: rgba(255,255,255,0.7);
+        font-size: 20px;
+        animation: float 6s linear infinite;
+    }
+
+    @keyframes float {
+        from {
+            transform: translateY(100vh);
+            opacity: 1;
+        }
+        to {
+            transform: translateY(-10vh);
+            opacity: 0;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Will you be my Valentine Buddy? 💖</h1>
+    <button id="yesBtn">Yes 💕</button>
+    <button id="noBtn">No 🙃</button>
+    <div id="success">Yayyy!! 💘 Best Valentine Ever!</div>
+</div>
+
+<script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const success = document.getElementById("success");
+
+    function moveNoBtn() {
+        const padding = 80;
+        const x = Math.random() * (window.innerWidth - padding);
+        const y = Math.random() * (window.innerHeight - padding);
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    }
+
+    noBtn.addEventListener("mouseenter", moveNoBtn);
+    noBtn.addEventListener("touchstart", moveNoBtn);
+
+    yesBtn.addEventListener("click", () => {
+        success.style.display = "block";
+    });
+
+    moveNoBtn();
+
+    // Floating hearts
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.fontSize = (16 + Math.random() * 20) + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 6000);
+    }, 400);
+
+    // 2-minute prompt
+    setTimeout(() => {
+        alert("Thanks for being my valentine my buddy ❤️");
+    }, 120000);
+</script>
+
+</body>
+</html>
